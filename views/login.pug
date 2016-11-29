@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .row
+        .container
+            .wrapper
+                form(action="/sign-in", method="post", name="login-form", class="form-signin")
+                    h3(class="form-signin-heading") Sign in
+                    hr(class="colorgraph")
+                    br/
+                    div(class=messages.error? 'form-group has-error' : 'form-group' )
+                        input(type="text", class="form-control", name="username", placeholder="Nickname", autofocus="")/
+                    button(class="btn btn-lg btn-primary btn-block",  name="Submit", value="Login", type="Submit") Enter
+                if (messages.error)
+                    p= messages.error1[0].username
