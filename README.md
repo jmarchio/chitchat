@@ -14,5 +14,5 @@ $ git clone git://github.com/jmarchio/chitchat
 $ cd chitchat
 $ npm install
 $ npm install -g nodemon
-$ nodemon /bin/www
+$ npm start
 ```
