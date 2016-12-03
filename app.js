@@ -5,7 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv').config();
+var redis   = require("redis");
 var session = require('express-session');
+var redisStore = require('connect-redis')(session);
+var client  = redis.createClient();
 var flash = require('express-flash');
 
 
@@ -23,9 +26,9 @@ app.set('view engine', 'pug');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(session({
   secret: 'ssshhhhh',
+  store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl :  260}),
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  saveUninitialized: false
 }));
 app.use(flash());
 app.use(logger('dev'));
