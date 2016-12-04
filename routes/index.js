@@ -5,47 +5,55 @@ var field = form.field;
 var validate = form.validate;
 var redis   = require("redis");
 var client  = redis.createClient();
+var authService = require('../services/auth');
 
 
 var flash = require('express-flash');
 
-/* GET home page. */
+/**
+ * GET home
+ */
 router.get('/', function(req, res, next) {
   console.log(process.env.NODE_ENV);
   res.render('login', { title: 'Express' });
 });
 
 
+/**
+ * Define sign in validations
+ */
+
 var validationMiddleware = form(
     validate("username", "Nickname").required("", "What is your %s?"),
-    validate("username", "Nickname").custom(function(value, source) {
-        console.log(source);
+    /**
+     * Validates unique nickname in username space
+     */
+    validate("username", "Nickname").custom(function(value, source, callback) {
 
-        /*if( session.nickname ){
-            console.log(session.nickname);
-        }*/
-/*
-      if (value !== "admin") {
-        throw new Error("%s must be 'admin'.");
-      }*/
+        client.EXISTS('username:' + source.username, function(error, reply){
+            if(reply) {
+                return callback(new Error('%s: '+ source.username +' is already taken.'));
+            }
+            else{
+                callback(null);
+            }
+
+        });
     })
 );
 
+/**
+ * POST sign-in
+ */
 router.post('/sign-in', validationMiddleware,function(req, res, next){
-    console.log(req.session.nickname);
-    var sess = req.session;
   if (!req.form.isValid) {
-    //console.log(req.form.getErrors());
     res.render('login');
   }
   else {
-    //req.session.nickname = req.body.username;
-      client.HSET('nickname1', req.body.username, 'asa');
+    authService.create(req.body.username);
     req.session.nickname = req.body.username;
     res.render('login', { title: 'Express' });
   }
-
-
 });
 
 module.exports = router;
