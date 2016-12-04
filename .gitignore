@@ -2,6 +2,9 @@
 .env
 .idea/
 
+#autogenerate files
+public/css
+
 # Logs
 logs
 *.log
