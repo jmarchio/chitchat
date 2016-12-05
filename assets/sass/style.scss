@@ -3,7 +3,7 @@
 
 
 body{
-  padding: 50px;
+  padding: 50px 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /*background-color: $body-bg;*/
 }
@@ -12,14 +12,6 @@ body{
 a{
   color: #00B7FF;
 }
-
-
-.wrapper{
-  margin-top: 80px;
-  margin-bottom: 20px;
-  position: relative;
-}
-
 
 
 .colorgraph{
@@ -36,3 +28,4 @@ a{
 
 
 @import "login";
+@import "home";

@@ -15,12 +15,12 @@ var flash = require('express-flash');
  */
 router.get('/', function(req, res, next) {
   console.log(process.env.NODE_ENV);
-  res.render('login', { title: 'Express' });
+  res.render('login', { bodyCss: 'login'});
 });
 
 
 router.get('/home', function(req, res, next) {
-    res.render('home');
+    res.render('home', { bodyCss: 'home'});
 });
 
 /**
@@ -51,12 +51,12 @@ var validationMiddleware = form(
  */
 router.post('/sign-in', validationMiddleware,function(req, res, next){
   if (!req.form.isValid) {
-    res.render('login');
+    res.render('login', { bodyCss: 'login'});
   }
   else {
     authService.create(req.body.username);
     req.session.nickname = req.body.username;
-    res.render('login', { title: 'Express' });
+    res.render('login', { bodyCss: 'login'});
   }
 });
 

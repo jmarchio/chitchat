@@ -1,5 +1,39 @@
 extends layout
 
 block content
-    .row
+    .wrapper
         .container
+            .row
+                .col-xs-12
+                    .header.clearfix
+                        h3.welcome Welcome Username1
+                        a.logout Logout
+                    hr(class="colorgraph")
+            .row
+                .col-xs-12
+                    .tabs-bar
+                        ul.nav.nav-tabs
+                            li.active
+                                a(href="#letters", data-toggle="tab") Main
+                            li
+                                a(href="#other-chat", data-toggle="tab") Other chat
+                    .tabs-body
+                        .row
+                            .col-md-8
+                                .tab-content
+                                    .tab-pane.fade.in.active#letters
+                                        .panel.panel-default
+                                            .panel-body
+                                                ul.message-list.clearfix
+                                                    li(class="talk-bubble tri-right round left-in pull-left")
+                                                        .talktext
+                                                            p Writting some text
+                                                    li(class="talk-bubble tri-right round right-in pull-right")
+                                                        .talktext
+                                                            p lslalslasasdv a asdasd asdas asda asdasa asdd
+                                    .tab-pane.fade#other-chat
+                                        .panel.panel-default
+                                            .panel-body
+                                                h3 Other
+                            .col-md-4
+                                h3 Contacts
