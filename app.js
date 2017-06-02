@@ -15,6 +15,7 @@ var flash = require('express-flash');
 
 
 var index = require('./routes/index');
+var home = require('./routes/home');
 var users = require('./routes/users');
 
 var app = express();
@@ -56,6 +57,7 @@ app.use(cookieParser());
 
 
 app.use('/', index);
+app.use('/', home);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

@@ -31,16 +31,42 @@
     -webkit-box-shadow: 0px 2px 2px 4px rgba(0,0,0,0.05);
     -moz-box-shadow: 0px 2px 2px 4px rgba(0,0,0,0.05);
     box-shadow: 0px 2px 2px 4px rgba(0,0,0,0.05);
-    
+
     .panel-body{
       min-height: 400px;
       height: 400px;
       overflow: auto;
+
+      .message-list{
+        margin: 0;
+        padding: 0;
+      }
     }
-    .message-list{
-      margin: 0;
-      padding: 0;
+
+    .panel-footer{
+      padding: 7px 0 0 1px;
+
+      .chat-input{
+        border: 0;
+        width: 86%;
+        height: 45px;
+        resize: none;
+        border-bottom-left-radius: 3px;
+        float: left;
+      }
+
+      .send-message{
+        float: right;
+        margin-right: 4px;
+
+        &:focus{
+          outline: none;
+          border: 0 none;
+          background-color: $brand-primary;
+        }
+      }
     }
+
   }
 }
 

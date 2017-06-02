@@ -19,10 +19,6 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/home', function(req, res, next) {
-    res.render('home', { bodyCss: 'home'});
-});
-
 /**
  * Define sign in validations
  */
